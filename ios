@@ -1,0 +1,22 @@
+import UIKit
+import PDFKit
+
+class PDFReaderViewController: UIViewController {
+    
+    var pdfView: PDFView!
+    var document: PDFDocument!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Create a PDFView and add it to the view controller's view
+        pdfView = PDFView(frame: view.bounds)
+        view.addSubview(pdfView)
+        
+        // Load a PDF document from the app bundle
+        if let path = Bundle.main.path(forResource: "example", ofType: "pdf") {
+            document = PDFDocument(url: URL(fileURLWithPath: path))
+            pdfView.document = document
+        }
+    }
+}
